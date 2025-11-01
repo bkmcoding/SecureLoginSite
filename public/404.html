@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* --- General Reset & Fonts --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #d0d0d0;
+            font-size: 0.95rem;
+            
+            /* --- Background Texture (Emulation) --- */
+            background-color: #2a3a4a;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+                radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0;
+        }
+
+        /* --- Error Card Container --- */
+        .error-card {
+            background-color: #202c38;
+            border: 1px solid #4a6070;
+            border-radius: 5px;
+            padding: 40px; /* More padding for a centered feel */
+            width: 350px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center; /* Center all content */
+            position: relative;
+        }
+
+        /* --- Top Right Circle Element --- */
+        .error-card::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #5a758a;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(90, 117, 138, 0.3) 10%, transparent 70%);
+            opacity: 0.8;
+        }
+
+        /* --- Header Text --- */
+        .error-card h1 {
+            font-size: 6rem; /* Large 404 */
+            font-weight: 600;
+            margin: 0;
+            color: #ffffff;
+            line-height: 1;
+        }
+        
+        .error-card h2 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .error-card p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            margin-bottom: 30px; /* Space before button */
+        }
+
+        /* --- Home Button (Styled like login) --- */
+        .home-button {
+            display: inline-block; /* Allows padding and centering */
+            width: calc(100% - 40px); /* Full width minus padding */
+            padding: 12px 20px;
+            background-color: #38495a;
+            border: 1px solid #4a6070;
+            border-radius: 3px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none; /* For the <a> tag */
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .home-button:hover {
+            background-color: #4a6070;
+            box-shadow: 
+                0 3px 8px rgba(0, 0, 0, 0.6), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2), 
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .home-button:active {
+            background-color: #304050;
+            box-shadow: 
+                inset 0 1px 5px rgba(0, 0, 0, 0.8),
+                0 1px 2px rgba(0, 0, 0, 0.3);
+            transform: translateY(1px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="error-card">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        
+        <a href="./index.html" class="home-button">Go Back Home</a>
+    </div>
+
+</body>
+</html>

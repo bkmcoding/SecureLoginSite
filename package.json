@@ -1,0 +1,16 @@
+{
+  "name": "secureloginsite",
+  "version": "1.0.0",
+  "description": "not secure site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bkmcoding",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "express": "^5.1.0"
+  }
+}

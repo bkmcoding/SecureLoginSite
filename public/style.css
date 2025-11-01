@@ -1,0 +1,300 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #d0d0d0;
+  font-size: 0.95rem;
+}
+
+.center-fullscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.column-fullscreen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.textured-bg {
+  background-color: #2a3a4a;
+  background-image: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0;
+}
+
+.login-card,
+.signup-card {
+  background-color: #202c38;
+  border: 1px solid #4a6070;
+  border-radius: 5px;
+  padding: 25px;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  position: relative;
+}
+.login-card::before,
+.signup-card::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #5a758a;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(90, 117, 138, 0.3) 10%, transparent 70%);
+  opacity: 0.8;
+}
+.login-card h2,
+.signup-card h2 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.login-card p,
+.signup-card p {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: #b0b0b0;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.form-group input,
+.form-group select {
+  width: calc(100% - 22px);
+  padding: 10px;
+  background-color: #1a2530;
+  border: 1px solid #3a4b5d;
+  border-radius: 3px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #60a0c0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 5px rgba(96, 160, 192, 0.4);
+}
+
+.login-button,
+.signup-button,
+.widget-button {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background-color: #38495a;
+  border: 1px solid #4a6070;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.login-button:hover,
+.signup-button:hover,
+.widget-button:hover {
+  background-color: #4a6070;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.login-button:active,
+.signup-button:active,
+.widget-button:active {
+  background-color: #304050;
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
+}
+
+.signup-button {
+  width: 100%;
+}
+.signup-link,
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+.signup-link a,
+.login-link a {
+  color: #60a0c0;
+  text-decoration: none;
+  font-weight: 600;
+}
+.signup-link a:hover,
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.error-msg {
+  background-color: rgba(176, 0, 32, 0.15);
+  border: 1px solid #b00020;
+  color: #ffb3bf;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.header {
+  background-color: #202c38;
+  border-bottom: 1px solid #4a6070;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.nav-links a {
+  color: #60a0c0;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.nav-links a:hover {
+  color: #80c0e0;
+}
+.dashboard-container {
+  flex-grow: 1;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  align-content: start;
+}
+.widget {
+  background-color: #202c38;
+  border: 1px solid #4a6070;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  grid-column: span 1;
+}
+.widget.welcome-widget {
+  grid-column: span 2;
+}
+@media (max-width: 675px) {
+  .widget.welcome-widget {
+    grid-column: span 1;
+  }
+}
+.widget h3 {
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #304050;
+}
+.widget-content p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #a0a0a0;
+  margin-bottom: 10px;
+}
+.widget::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #5a758a;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(90, 117, 138, 0.3) 10%, transparent 70%);
+  opacity: 0.8;
+  z-index: 1;
+}
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.checklist li {
+  font-size: 0.9rem;
+  color: #d0d0d0;
+  padding: 10px 0 10px 30px;
+  position: relative;
+  border-bottom: 1px dashed #304050;
+}
+.checklist li:last-child {
+  border-bottom: none;
+}
+.checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  font-size: 1.2rem;
+  color: #60a0c0;
+}
+.checklist li.completed::before {
+  content: '☑';
+}
+.checklist li.completed {
+  color: #8090a0;
+  text-decoration: line-through;
+}
+.empty-state {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #8090a0;
+  font-style: italic;
+}
+.welcome-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  align-items: flex-end;
+}
+@media (max-width: 900px) {
+  .welcome-form {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,2 @@
+email_enc,username_enc,salt,password_hash,iv_email,tag_email,iv_username,tag_username
+d5Oy3+Yk7kkKMhAcZdg=,sq0OPA==,$2b$10$74pB7l/8g9rESiM7BCJive,$2b$10$74pB7l/8g9rESiM7BCJivelAJPYJUKyRbbhlh73cDEcta1hqR49NO,LF5pHUVc3wxVgoBj,4u5jVuGteBNul/VmY8D8OA==,jrYyu+MHVutK1auX,9/BqVY/YHZaRfoldcGUcug==

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilitarian Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="textured-bg center-fullscreen">
+
+    <div class="signup-card">
+        <h2>Sign Up</h2>
+        <p>Create your account to get started</p>
+
+        <form action="/secure/register" method="POST">
+            <div class="form-group">
+                <label for="username">username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" autocomplete="new-password" required>
+            </div>
+
+            <button type="submit" class="signup-button">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="index.html">Log in here</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilitarian Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <body class="textured-bg center-fullscreen">
+    <div class="login-card">
+        <div id="login-error" class="error-msg" style="display:none"></div>
+        <h2>Login</h2>
+        <p>Please enter your credentials to proceed</p>
+
+        <form action="/secure/login" method="POST">
+            <div class="form-group">
+                <label for="username">email</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? <a href="./signup.html">Sign up here</a>
+        </div>
+
+    </div>
+<script>
+    (function() {
+        const el = document.getElementById('login-error');
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('error');
+        if (!el || !code) return;
+        let msg = '';
+        if (code === 'invalid') msg = 'Invalid email or password.';
+        else if (code === 'missing') msg = 'Email and password are required.';
+        else if (code === 'server') msg = 'Server error. Please try again.';
+        if (msg) {
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+    })();
+</script>
+</body>
+</html>

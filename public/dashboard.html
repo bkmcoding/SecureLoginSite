@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="textured-bg column-fullscreen">
+
+    <header class="header">
+        <h1>Dashboard</h1>
+        <nav class="nav-links">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="/secure/logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="widget welcome-widget">
+            <h3 id="welcome-heading">Welcome, User!</h3>
+            <div class="widget-content">
+                <p>Let's get your account set up. You can add more details to your profile below.</p>
+                <div class="welcome-form">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" placeholder="e.g., John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                            <option value="">Select your timezone...</option>
+                            <option value="est">Eastern Time (EST)</option>
+                            <option value="cst">Central Time (CST)</option>
+                            <option value="mst">Mountain Time (MST)</option>
+                            <option value="pst">Pacific Time (PST)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="widget-button">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget">
+            <h3>Your Next Steps</h3>
+            <div class="widget-content">
+                <ul class="checklist">
+                    <li class="completed">Create your account</li>
+                    <li>Complete your profile</li>
+                    <li>Create your first project</li>
+                    <li>Invite a team member</li>
+                    <li>Review documentation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="widget">
+            <h3>Recent Activity</h3>
+            <div class="widget-content">
+                <p class="empty-state">Your recent actions will appear here once you get started.</p>
+            </div>
+        </div>
+        <div class="widget">
+            <h3>My Projects</h3>
+            <div class="widget-content">
+                <p class="empty-state">You haven't created any projects yet.</p>
+                <button class="widget-button" style="width: 100%;">Create New Project</button>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    (function() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            if (!name) {
+                window.location.href = '/404.html';
+                return;
+            }
+            const safe = String(name).slice(0, 64);
+            const heading = document.getElementById('welcome-heading');
+            if (heading) heading.textContent = `Welcome, ${safe}!`;
+        } catch (e) {
+            window.location.href = '/404.html';
+        }
+    })();
+</script>
+</body>
+</html>
