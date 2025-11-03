@@ -5,7 +5,7 @@ const { deriveKey, decryptText } = require('../utils/cryptoUtils.js');
 const { doesUserExistAsync } = require('../utils/userData.js'); // <-- 1. Import it
 const fs = require('fs').promises;
 const path = require('path');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
     if (!email || !password) {
         return res.redirect('/?error=missing');
     }
+    const normEmail = String(email).trim().toLowerCase();
 
     const usersFilePath = path.join(__dirname, '..', 'data.csv');
 
@@ -45,34 +46,45 @@ router.post('/login', async (req, res) => {
         const isNewFormat = header.startsWith('email_enc,');
         let found = false;
         let username = '';
-        const key = deriveKey(process.env.APP_SECRET || 'dev-secret-change-me');
+        const key = deriveKey(process.env.APP_SECRET || 'hehe-secret-key');
 
         for (let i = isNewFormat ? 1 : 0; i < lines.length; i++) {
-            const parts = lines[i].split(',');
-            if (!parts[0]) continue;
+            try {
+                const parts = lines[i].split(',');
+                if (!parts[0]) continue;
 
-            if (isNewFormat) {
-                const [emailEnc, usernameEnc, _salt, passwordHash, ivEmail, tagEmail, ivUsername, tagUsername] = parts;
-                const decryptedEmail = decryptText(emailEnc, ivEmail, tagEmail, key);
-                if (decryptedEmail === email) {
-                    const ok = await bcrypt.compare(password, passwordHash);
-                    if (ok) {
-                        found = true;
-                        username = decryptText(usernameEnc, ivUsername, tagUsername, key) || '';
+                if (isNewFormat) {
+                    if (parts.length < 8) continue;
+                    const [emailEnc, usernameEnc, _salt, passwordHash, ivEmail, tagEmail, ivUsername, tagUsername] = parts;
+                    let decryptedEmail;
+                    try {
+                        decryptedEmail = decryptText(emailEnc, ivEmail, tagEmail, key);
+                    } catch (_e) {
+                        continue;
                     }
-                    break;
-                }
-            } else {
-                // old: email, password_hash
-                const [plainEmail, passwordHash] = parts;
-                if (plainEmail === email) {
-                    const ok = await bcrypt.compare(password, passwordHash);
-                    if (ok) {
-                        found = true;
-                        username = email.split('@')[0];
+                    if (decryptedEmail && decryptedEmail.trim().toLowerCase() === normEmail) {
+                        const ok = await bcrypt.compare(password, passwordHash);
+                        if (ok) {
+                            found = true;
+                            username = decryptText(usernameEnc, ivUsername, tagUsername, key) || '';
+                        }
+                        break;
                     }
-                    break;
+                } else {
+                    // old: email, password_hash
+                    const [plainEmail, passwordHash] = parts;
+                    if (plainEmail && plainEmail.trim().toLowerCase() === normEmail) {
+                        const ok = await bcrypt.compare(password, passwordHash);
+                        if (ok) {
+                            found = true;
+                            username = email.split('@')[0];
+                        }
+                        break;
+                    }
                 }
+            } catch (_e) {
+                // Skip malformed row
+                continue;
             }
         }
 

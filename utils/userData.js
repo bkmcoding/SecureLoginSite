@@ -53,16 +53,21 @@ async function doesUserExistAsync(email) {
         const isNewFormat = header.startsWith('email_enc,');
         const key = deriveKey(process.env.APP_SECRET || 'hehe-secret-key');
         for (let i = 1; i < lines.length; i++) {
-            const parts = lines[i].split(',');
-            if (!parts[0]) continue;
-            if (isNewFormat) {
-                const [emailEnc, _usernameEnc, _salt, _hash, ivEmail, tagEmail] = parts;
-                const decrypted = decryptText(emailEnc, ivEmail, tagEmail, key);
-                if (decrypted === email) return true;
-            } else {
-                // Legacy: email, password_hash
-                const [plainEmail] = parts;
-                if (plainEmail === email) return true;
+            try {
+                const parts = lines[i].split(',');
+                if (!parts[0]) continue;
+                if (isNewFormat) {
+                    if (parts.length < 8) continue;
+                    const [emailEnc, _usernameEnc, _salt, _hash, ivEmail, tagEmail] = parts;
+                    const decrypted = decryptText(emailEnc, ivEmail, tagEmail, key);
+                    if (decrypted === email) return true;
+                } else {
+                    // Legacy: email, password_hash
+                    const [plainEmail] = parts;
+                    if (plainEmail === email) return true;
+                }
+            } catch (_e) {
+                continue;
             }
         }
         return false;
